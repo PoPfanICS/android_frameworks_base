@@ -1122,6 +1122,12 @@ public final class Settings {
             Uri.parse("content://" + AUTHORITY + "/system");
 
         /**
+         * Back button ends call
+         * @hide  
+         */
+        public static final String BACK_BUTTON_ENDS_CALL = "back_button_ends_call";
+
+        /**
          * Whether we keep the device on while the device is plugged in.
          * Supported values are:
          * <ul>

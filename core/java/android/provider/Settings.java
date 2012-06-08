@@ -1122,6 +1122,12 @@ public final class Settings {
             Uri.parse("content://" + AUTHORITY + "/system");
 
         /**
+         * Center Clock
+         * @hide  
+         */
+        public static final String CENTER_CLOCK_STATUS_BAR = "center_clock_status_bar";
+
+        /**
          * Back button ends call
          * @hide  
          */

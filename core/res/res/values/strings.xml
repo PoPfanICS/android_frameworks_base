@@ -1890,6 +1890,8 @@
          in the phone soon. -->
     <string name="lockscreen_low_battery">Connect your charger.</string>
 
+    <string name="lockscreen_always_battery">Battery, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+
     <!-- Shown in the lock screen when there is no SIM card. -->
     <string name="lockscreen_missing_sim_message_short">No SIM card.</string>
     <!-- Shown in the lock screen when there is no SIM card. -->

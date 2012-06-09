@@ -421,9 +421,11 @@ public class KeyguardUpdateMonitor {
         }
 
         // change where battery needs charging
+        /*
         if (!nowPluggedIn && isBatteryLow(current) && current.level != old.level) {
             return true;
         }
+        */
         return false;
     }
 

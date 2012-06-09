@@ -2393,6 +2393,12 @@ public final class Settings {
         public static final String LOCKSCREEN_TARGETS = "lockscreen_targets";
 
         /**
+         * Setting to allow % on lockscreen always showing.
+         * @hide
+         */
+        public static final String LOCKSCREEN_BATTERY = "lockscreen_battery";
+
+        /**
          * Boolean value whether to link ringtone and notification volumes
          * 
          * @hide

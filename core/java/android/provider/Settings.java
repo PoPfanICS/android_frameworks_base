@@ -1123,15 +1123,21 @@ public final class Settings {
 
         /**
          * Center Clock
-         * @hide  
+         * @hide
          */
         public static final String CENTER_CLOCK_STATUS_BAR = "center_clock_status_bar";
 
         /**
          * Back button ends call
-         * @hide  
+         * @hide
          */
         public static final String BACK_BUTTON_ENDS_CALL = "back_button_ends_call";
+
+        /**
+         * Menu button answers call
+         * @hide
+         */
+        public static final String MENU_BUTTON_ANSWERS_CALL = "menu_button_answers_call";
 
         /**
          * Whether we keep the device on while the device is plugged in.

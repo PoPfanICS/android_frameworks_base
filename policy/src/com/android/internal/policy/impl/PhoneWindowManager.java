@@ -3092,6 +3092,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 }
                 break;
             }
+
             case KeyEvent.KEYCODE_BACK: {
                 if (down) {
                     if (Settings.System.getInt(mContext.getContentResolver(), Settings.System.BACK_BUTTON_ENDS_CALL, 0) == 1) {
@@ -3100,11 +3101,28 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                             try {
                                 telephonyService.showCallScreen();
                                 telephonyService.endCall();
-                            } 
+                            }
                             catch (RemoteException ex) {
                                 Log.w(TAG, "ITelephony threw RemoteException" + ex);
                             }
-                        } 
+                        }
+                    }
+                }
+                break;
+            }
+
+            case KeyEvent.KEYCODE_MENU: {
+                if (down) {
+                    if (Settings.System.getInt(mContext.getContentResolver(), Settings.System.MENU_BUTTON_ANSWERS_CALL, 0) == 1) {
+                        ITelephony telephonyService = getTelephonyService();
+                        if (telephonyService != null) {
+                            try {
+                                telephonyService.answerRingingCall();
+                            }
+                            catch (RemoteException ex) {
+                                Log.w(TAG, "ITelephony threw RemoteException" + ex);
+                            }
+                        }
                     }
                 }
                 break;

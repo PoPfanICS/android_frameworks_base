@@ -3359,6 +3359,12 @@ public final class Settings {
             "lock_before_unlock";
 
         /**
+         * custom lockscreen text color
+         * @hide
+         */
+        public static final String LOCKSCREEN_CUSTOM_TEXT_COLOR = "lockscreen_custom_text_color";
+
+        /**
          * The saved value for WindowManagerService.setForcedDisplaySize().
          * Two integers separated by a comma.  If unset, then use the real display size.
          * @hide

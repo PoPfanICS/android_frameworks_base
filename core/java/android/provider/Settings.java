@@ -1146,6 +1146,11 @@ public final class Settings {
         public static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
 
         /**
+         * SystemUI - Custom Clock color
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_COLOR = "statusbar_clock_color";
+        /**
          * Whether we keep the device on while the device is plugged in.
          * Supported values are:
          * <ul>

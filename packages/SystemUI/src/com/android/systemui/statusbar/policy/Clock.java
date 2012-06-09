@@ -16,34 +16,26 @@
 
 package com.android.systemui.statusbar.policy;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.TimeZone;
+
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.database.ContentObserver;
-import android.graphics.Canvas;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.format.DateFormat;
 import android.text.style.CharacterStyle;
-import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
-import android.text.style.RelativeSizeSpan;
-import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.TimeZone;
 
 import com.android.internal.R;
 
@@ -65,6 +57,7 @@ public class Clock extends TextView {
 
     private int mAmPmStyle;
     private boolean mShowClock;
+    private int mClockColor = com.android.internal.R.color.holo_blue_light;
 
     Handler mHandler;
 
@@ -79,6 +72,8 @@ public class Clock extends TextView {
                     Settings.System.STATUS_BAR_AM_PM), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_CLOCK), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUSBAR_CLOCK_COLOR), false, this);
         }
 
         @Override public void onChange(boolean selfChange) {
@@ -253,6 +248,14 @@ public class Clock extends TextView {
             }
         }
 
+        mClockColor = Settings.System.getInt(resolver, Settings.System.STATUSBAR_CLOCK_COLOR, 0xFF33B5E5);
+            if (mClockColor == -1) {
+                // flag to reset the color
+                mClockColor = 0xFF33B5E5;
+            }
+
+        setTextColor(mClockColor);
+
         mShowClock = (Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_CLOCK, 1) == 1);
 
@@ -262,4 +265,3 @@ public class Clock extends TextView {
             setVisibility(View.GONE);
     }
 }
-

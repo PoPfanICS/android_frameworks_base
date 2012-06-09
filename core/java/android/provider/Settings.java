@@ -1150,6 +1150,14 @@ public final class Settings {
          * @hide
          */
         public static final String STATUSBAR_CLOCK_COLOR = "statusbar_clock_color";
+
+        /**
+         * @hide
+         */
+        
+        public static final String POWER_DIALOG_SHOW_AIRPLANE = "power_dialog_show_airplane";
+        public static final String POWER_DIALOG_SHOW_SCREENSHOT = "power_dialog_show_screenshot";
+
         /**
          * Whether we keep the device on while the device is plugged in.
          * Supported values are:

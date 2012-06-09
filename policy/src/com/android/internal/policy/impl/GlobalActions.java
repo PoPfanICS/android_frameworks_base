@@ -88,6 +88,9 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
     private MyAdapter mAdapter;
 
+    private boolean mEnableAirplane = true;
+    private boolean mEnableScreenshot = true;
+
     private boolean mKeyguardShowing = false;
     private boolean mDeviceProvisioned = false;
     private ToggleAction.State mAirplaneState = ToggleAction.State.Off;
@@ -149,6 +152,11 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
      * @return A new dialog.
      */
     private AlertDialog createDialog() {
+        mEnableAirplane = Settings.System.getInt(mContext.getContentResolver(),
+            Settings.System.POWER_DIALOG_SHOW_AIRPLANE, 1) == 1;
+        mEnableScreenshot = Settings.System.getInt(mContext.getContentResolver(),
+            Settings.System.POWER_DIALOG_SHOW_SCREENSHOT, 1) == 1;
+
         mSilentModeAction = new SilentModeAction(mAudioManager, mHandler);
 
         mAirplaneModeOn = new ToggleAction(
@@ -246,23 +254,27 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             });
 
         // next: screenshot
-        mItems.add(
-            new SinglePressAction(com.android.internal.R.drawable.ic_lock_screenshot, R.string.global_action_screenshot) {
-                public void onPress() {
-                    takeScreenshot();
-                }
+        if(mEnableScreenshot) {
+            mItems.add(
+                new SinglePressAction(com.android.internal.R.drawable.ic_lock_screenshot, R.string.global_action_screenshot) {
+                    public void onPress() {
+                        takeScreenshot();
+                    }
 
-                public boolean showDuringKeyguard() {
-                    return true;
-                }
+                    public boolean showDuringKeyguard() {
+                        return true;
+                    }
 
-                public boolean showBeforeProvisioning() {
-                    return true;
-                }
+                    public boolean showBeforeProvisioning() {
+                        return true;
+                    }
             });
+        }
 
         // next: airplane mode
-        mItems.add(mAirplaneModeOn);
+        if(mEnableScreenshot) {
+            mItems.add(mAirplaneModeOn);
+        }
 
         // last: silent mode
         if (SHOW_SILENT_TOGGLE) {

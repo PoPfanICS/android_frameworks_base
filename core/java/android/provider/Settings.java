@@ -1140,6 +1140,12 @@ public final class Settings {
         public static final String MENU_BUTTON_ANSWERS_CALL = "menu_button_answers_call";
 
         /**
+         * Lockscreen - Custom Carrier label
+         * @hide
+         */
+        public static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
+
+        /**
          * Whether we keep the device on while the device is plugged in.
          * Supported values are:
          * <ul>

@@ -239,8 +239,7 @@ public class DigitalClock extends RelativeLayout {
         mAmPm.setIsMorning(mCalendar.get(Calendar.AM_PM) == 0);
 
         ContentResolver resolver = mContext.getContentResolver();
-        int mLockscreenColor = Settings.System.getInt(resolver,
-                Settings.System.LOCKSCREEN_CUSTOM_TEXT_COLOR, COLOR_WHITE);
+        int mLockscreenColor = Settings.System.getInt(resolver, Settings.System.LOCKSCREEN_CUSTOM_TEXT_COLOR, COLOR_WHITE);
         mTimeDisplayBackground.setTextColor(mLockscreenColor);
         mTimeDisplayForeground.setTextColor(mLockscreenColor);
     }

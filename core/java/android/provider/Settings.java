@@ -1152,11 +1152,22 @@ public final class Settings {
         public static final String STATUSBAR_CLOCK_COLOR = "statusbar_clock_color";
 
         /**
+         * Airplane mode show/hide
          * @hide
          */
-        
         public static final String POWER_DIALOG_SHOW_AIRPLANE = "power_dialog_show_airplane";
+
+        /**
+         * Screenshot show/hide
+         * @hide
+         */
         public static final String POWER_DIALOG_SHOW_SCREENSHOT = "power_dialog_show_screenshot";
+
+        /**
+         * custom lockscreen text color
+         * @hide
+         */
+        public static final String LOCKSCREEN_CUSTOM_TEXT_COLOR = "lockscreen_custom_text_color";
 
         /**
          * Whether we keep the device on while the device is plugged in.
@@ -3358,11 +3369,7 @@ public final class Settings {
         public static final String LOCK_BEFORE_UNLOCK =
             "lock_before_unlock";
 
-        /**
-         * custom lockscreen text color
-         * @hide
-         */
-        public static final String LOCKSCREEN_CUSTOM_TEXT_COLOR = "lockscreen_custom_text_color";
+
 
         /**
          * The saved value for WindowManagerService.setForcedDisplaySize().

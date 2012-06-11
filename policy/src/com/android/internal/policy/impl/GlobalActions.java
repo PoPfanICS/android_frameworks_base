@@ -90,6 +90,8 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
     private boolean mEnableAirplane = true;
     private boolean mEnableScreenshot = true;
+    private boolean mEnableProfile = true;
+    private boolean mEnableReboot = true;
 
     private boolean mKeyguardShowing = false;
     private boolean mDeviceProvisioned = false;
@@ -156,6 +158,10 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             Settings.System.POWER_DIALOG_SHOW_AIRPLANE, 1) == 1;
         mEnableScreenshot = Settings.System.getInt(mContext.getContentResolver(),
             Settings.System.POWER_DIALOG_SHOW_SCREENSHOT, 1) == 1;
+        mEnableProfile = Settings.System.getInt(mContext.getContentResolver(),
+            Settings.System.POWER_DIALOG_SHOW_PROFILE, 1) == 1;
+        mEnableReboot = Settings.System.getInt(mContext.getContentResolver(),
+            Settings.System.POWER_DIALOG_SHOW_REBOOT, 1) == 1;
 
         mSilentModeAction = new SilentModeAction(mAudioManager, mHandler);
 
@@ -222,36 +228,40 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             });
 
         // next: reboot
-        mItems.add(
-            new SinglePressAction(com.android.internal.R.drawable.ic_lock_reboot, R.string.global_action_reboot) {
-                public void onPress() {
-                    ShutdownThread.reboot(getUiContext(), "null", true);
-                }
+        if(mEnableReboot) {
+            mItems.add(
+                new SinglePressAction(com.android.internal.R.drawable.ic_lock_reboot, R.string.global_action_reboot) {
+                    public void onPress() {
+                        ShutdownThread.reboot(getUiContext(), "null", true);
+                    }
 
-                public boolean showDuringKeyguard() {
-                    return true;
-                }
+                    public boolean showDuringKeyguard() {
+                        return true;
+                    }
 
-                public boolean showBeforeProvisioning() {
-                    return true;
-                }
+                    public boolean showBeforeProvisioning() {
+                        return true;
+                    }
             });
+        }
 
         // next: profile
-        mItems.add(
-            new ProfileChooseAction() {
-                public void onPress() {
-                    createProfileDialog();
-                }
+        if(mEnableProfile) {
+            mItems.add(
+                new ProfileChooseAction() {
+                    public void onPress() {
+                        createProfileDialog();
+                    }
 
-                public boolean showDuringKeyguard() {
-                    return false;
-                }
+                    public boolean showDuringKeyguard() {
+                        return false;
+                    }
 
-                public boolean showBeforeProvisioning() {
-                    return false;
-                }
-            });
+                    public boolean showBeforeProvisioning() {
+                        return false;
+                    }
+                });
+        }
 
         // next: screenshot
         if(mEnableScreenshot) {

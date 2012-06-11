@@ -1176,6 +1176,12 @@ public final class Settings {
         public static final String POWER_DIALOG_SHOW_REBOOT = "power_dialog_show_reboot";
 
         /**
+         * Alarm icon show/hide
+         * @hide
+         */
+        public static final String STATUSBAR_SHOW_ALARM = "statusbar_show_alarm";
+
+        /**
          * custom lockscreen text color
          * @hide
          */

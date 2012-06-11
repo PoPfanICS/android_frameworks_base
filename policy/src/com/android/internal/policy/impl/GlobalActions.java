@@ -272,7 +272,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         }
 
         // next: airplane mode
-        if(mEnableScreenshot) {
+        if(mEnableAirplane) {
             mItems.add(mAirplaneModeOn);
         }
 

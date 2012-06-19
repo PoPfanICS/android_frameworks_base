@@ -1176,6 +1176,12 @@ public final class Settings {
         public static final String POWER_DIALOG_SHOW_REBOOT = "power_dialog_show_reboot";
 
         /**
+         * Ringer mode show/hide
+         * @hide
+         */
+        public static final String POWER_DIALOG_SHOW_RINGER = "power_dialog_show_ringer";
+
+        /**
          * Alarm icon show/hide
          * @hide
          */

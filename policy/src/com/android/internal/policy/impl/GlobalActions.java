@@ -154,14 +154,16 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
      * @return A new dialog.
      */
     private AlertDialog createDialog() {
-        mEnableAirplane = Settings.System.getInt(mContext.getContentResolver(),
-            Settings.System.POWER_DIALOG_SHOW_AIRPLANE, 1) == 1;
-        mEnableScreenshot = Settings.System.getInt(mContext.getContentResolver(),
-            Settings.System.POWER_DIALOG_SHOW_SCREENSHOT, 1) == 1;
-        mEnableProfile = Settings.System.getInt(mContext.getContentResolver(),
-            Settings.System.POWER_DIALOG_SHOW_PROFILE, 1) == 1;
         mEnableReboot = Settings.System.getInt(mContext.getContentResolver(),
             Settings.System.POWER_DIALOG_SHOW_REBOOT, 1) == 1;
+        mEnableProfile = Settings.System.getInt(mContext.getContentResolver(),
+            Settings.System.POWER_DIALOG_SHOW_PROFILE, 1) == 1;
+        mEnableScreenshot = Settings.System.getInt(mContext.getContentResolver(),
+            Settings.System.POWER_DIALOG_SHOW_SCREENSHOT, 1) == 1;
+        mEnableAirplane = Settings.System.getInt(mContext.getContentResolver(),
+            Settings.System.POWER_DIALOG_SHOW_AIRPLANE, 1) == 1;
+        mEnableRinger = Settings.System.getInt(mContext.getContentResolver(),
+            Settings.System.POWER_DIALOG_SHOW_RINGER, 1) == 1;
 
         mSilentModeAction = new SilentModeAction(mAudioManager, mHandler);
 
@@ -287,7 +289,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         }
 
         // last: silent mode
-        if (SHOW_SILENT_TOGGLE) {
+        if(mEnableRinger && SHOW_SILENT_TOGGLE) {
             mItems.add(mSilentModeAction);
         }
 

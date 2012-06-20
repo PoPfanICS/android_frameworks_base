@@ -92,6 +92,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private boolean mEnableScreenshot = true;
     private boolean mEnableProfile = true;
     private boolean mEnableReboot = true;
+    private boolean mEnableRinger = true;
 
     private boolean mKeyguardShowing = false;
     private boolean mDeviceProvisioned = false;

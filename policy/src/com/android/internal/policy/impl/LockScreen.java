@@ -39,6 +39,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -88,6 +89,10 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
     private int mCreationOrientation;
 
     private boolean mSilentMode;
+
+    private TextView popfanLeft;
+    private TextView popfanRight;
+
     private AudioManager mAudioManager;
     private boolean mEnableMenuKeyInLockScreen;
 
@@ -279,7 +284,8 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
                 mIsScreenLarge = isScreenLarge();
                 ArrayList<TargetDrawable> storedDraw = new ArrayList<TargetDrawable>();
                 final Resources res = getResources();
-                final int targetInset = res.getDimensionPixelSize(com.android.internal.R.dimen.lockscreen_target_inset);
+                final int targetInset = mIsScreenLarge ? MultiWaveView.TABLET_TARGET_INSET :
+                    MultiWaveView.PHONE_TARGET_INSET;
                 final PackageManager packMan = mContext.getPackageManager();
                 final boolean isLandscape = mCreationOrientation == Configuration.ORIENTATION_LANDSCAPE;
                 final Drawable blankActiveDrawable = res.getDrawable(R.drawable.ic_lockscreen_target_activated);
@@ -519,6 +525,16 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
         mSilentMode = isSilentMode();
 
         mDigitalClock = (DigitalClock) findViewById(R.id.time);
+
+        //Label setup
+        popfanLeft = (TextView) findViewById(R.id.popLeft);
+        popfanRight = (TextView) findViewById(R.id.popRight);
+        popfanLeft.setVisibility(View.VISIBLE);
+        popfanLeft.setText("PoPfan.ICS " + android.os.SystemProperties.get("ro.cm.version"));
+        popfanLeft.setTextColor(0xffffffff);
+        popfanRight.setVisibility(View.VISIBLE);
+        popfanRight.setText("Daveee10@seria");
+        popfanRight.setTextColor(0xffffffff);
 
         mUnlockWidget = findViewById(R.id.unlock_widget);
         if (mUnlockWidget instanceof SlidingTab) {

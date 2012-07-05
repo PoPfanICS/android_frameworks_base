@@ -134,9 +134,8 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             mDialog.dismiss();
             mDialog = null;
         }
-        if (mDialog == null) {
-            mDialog = createDialog();
-        }
+
+        mDialog = createDialog();
         prepareDialog();
 
         mDialog.show();

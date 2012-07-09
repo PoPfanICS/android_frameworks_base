@@ -1152,6 +1152,12 @@ public final class Settings {
         public static final String STATUSBAR_CLOCK_COLOR = "statusbar_clock_color";
 
         /**
+         * Power Dialog Title show/hide
+         * @hide
+         */
+        public static final String POWER_DIALOG_SHOW_TITLE = "power_dialog_show_title";
+
+        /**
          * Airplane mode show/hide
          * @hide
          */

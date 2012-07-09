@@ -88,6 +88,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
     private MyAdapter mAdapter;
 
+    private boolean mEnableTitle = true;
     private boolean mEnableAirplane = true;
     private boolean mEnableScreenshot = true;
     private boolean mEnableProfile = true;
@@ -442,13 +443,18 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 mAudioManager.getRingerMode() != AudioManager.RINGER_MODE_NORMAL;
         mAirplaneModeOn.updateState(mAirplaneState);
         mAdapter.notifyDataSetChanged();
+        mEnableTitle = Settings.System.getInt(mContext.getContentResolver(),
+            Settings.System.POWER_DIALOG_SHOW_TITLE, 1) == 1;
+
         if (mKeyguardShowing) {
             mDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
         } else {
             mDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG);
         }
 
-        mDialog.setTitle(R.string.global_actions);
+        if(mEnableTitle) {
+            mDialog.setTitle(R.string.global_actions);
+        }
 
         if (SHOW_SILENT_TOGGLE) {
             IntentFilter filter = new IntentFilter(AudioManager.RINGER_MODE_CHANGED_ACTION);
